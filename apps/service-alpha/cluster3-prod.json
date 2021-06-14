@@ -1,0 +1,16 @@
+{
+  "family": "cluster3-service-alpha",
+  "networkMode": "awsvpc",
+  "containerDefinitions": [
+    {
+      "name": "demo-app1",
+      "image": "myspotontheweb/gitops-demo-app1:sha-98bcb62",
+      "essential": true
+    }
+  ],
+  "requiresCompatibilities": [
+    "FARGATE"
+  ],
+  "cpu": "256",
+  "memory": "512"
+}

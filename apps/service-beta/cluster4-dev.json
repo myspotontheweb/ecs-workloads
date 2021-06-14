@@ -1,0 +1,16 @@
+{
+  "family": "cluster4-service-beta",
+  "networkMode": "awsvpc",
+  "containerDefinitions": [
+    {
+      "name": "demo-app2",
+      "image": "myspotontheweb/gitops-demo-app2:v1.2.0",
+      "essential": true
+    }
+  ],
+  "requiresCompatibilities": [
+    "FARGATE"
+  ],
+  "cpu": "256",
+  "memory": "512"
+}
