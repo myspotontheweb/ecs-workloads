@@ -1,0 +1,16 @@
+{
+  "family": "service-alpha",
+  "networkMode": "awsvpc",
+  "containerDefinitions": [
+    {
+      "name": "demo-app1",
+      "image": "myspotontheweb/gitops-demo-app1:v1.2.11",
+      "essential": true
+    }
+  ],
+  "requiresCompatibilities": [
+    "FARGATE"
+  ],
+  "cpu": "256",
+  "memory": "512"
+}
