@@ -1,12 +1,32 @@
 
+# =======
+# Cluster
+# =======
+
+resource "aws_ecs_cluster" "cluster1" {
+  name = "demo-cluster1"
+
+  capacity_providers = ["FARGATE"]
+
+  default_capacity_provider_strategy {
+    capacity_provider = "FARGATE"
+    weight = 100
+  }
+
+  setting {
+    name  = "containerInsights"
+    value = "disabled"
+  }
+}
+
 # ========
 # Services
 # ========
 
-resource "aws_ecs_service" "service-alpha" {
+resource "aws_ecs_service" "cluster1-service-alpha" {
   name            = "service-alpha"
   cluster         = aws_ecs_cluster.cluster1.id
-  task_definition = aws_ecs_task_definition.service-alpha.arn
+  task_definition = aws_ecs_task_definition.cluster1-service-alpha.arn
 
   desired_count   = 2
 
@@ -16,10 +36,10 @@ resource "aws_ecs_service" "service-alpha" {
   }
 }
 
-resource "aws_ecs_service" "service-beta" {
+resource "aws_ecs_service" "cluster1-service-beta" {
   name            = "service-beta"
   cluster         = aws_ecs_cluster.cluster1.id
-  task_definition = aws_ecs_task_definition.service-beta.arn
+  task_definition = aws_ecs_task_definition.cluster1-service-beta.arn
 
   desired_count   = 2
 
@@ -29,10 +49,10 @@ resource "aws_ecs_service" "service-beta" {
   }
 }
 
-resource "aws_ecs_service" "service-gamma" {
+resource "aws_ecs_service" "cluster1-service-gamma" {
   name            = "service-gamma"
   cluster         = aws_ecs_cluster.cluster1.id
-  task_definition = aws_ecs_task_definition.service-gamma.arn
+  task_definition = aws_ecs_task_definition.cluster1-service-gamma.arn
 
   desired_count   = 2
 
@@ -46,7 +66,7 @@ resource "aws_ecs_service" "service-gamma" {
 # Task definitions
 # ================
 
-resource "aws_ecs_task_definition" "service-alpha" {
+resource "aws_ecs_task_definition" "cluster1-service-alpha" {
   family       = "service-alpha"
   network_mode = "awsvpc"
   cpu          = 256
@@ -62,7 +82,7 @@ resource "aws_ecs_task_definition" "service-alpha" {
   ])
 }
 
-resource "aws_ecs_task_definition" "service-beta" {
+resource "aws_ecs_task_definition" "cluster1-service-beta" {
   family       = "service-beta"
   network_mode = "awsvpc"
   cpu          = 256
@@ -78,7 +98,7 @@ resource "aws_ecs_task_definition" "service-beta" {
   ])
 }
 
-resource "aws_ecs_task_definition" "service-gamma" {
+resource "aws_ecs_task_definition" "cluster1-service-gamma" {
   family       = "service-gamma"
   network_mode = "awsvpc"
   cpu          = 256
