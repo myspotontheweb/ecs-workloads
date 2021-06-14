@@ -1,0 +1,27 @@
+on:
+  push:
+    branches:
+      - 'main'
+    paths:
+      - apps/service-alpha/dev.yml
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: eu-west-1
+
+      - name: Deploy Amazon ECS task definition
+        uses: aws-actions/amazon-ecs-deploy-task-definition@v1
+        with:
+          task-definition: apps/service-alpha/dev.yml
+          cluster: demo-cluster1
+          service: service-alpha
+          wait-for-service-stability: true
