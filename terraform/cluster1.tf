@@ -24,7 +24,7 @@ resource "aws_ecs_cluster" "cluster1" {
 # ========
 
 resource "aws_ecs_service" "cluster1-service-alpha" {
-  name            = "service-alpha"
+  name            = "cluster1-service-alpha"
   cluster         = aws_ecs_cluster.cluster1.id
   task_definition = aws_ecs_task_definition.cluster1-service-alpha.arn
 
@@ -37,7 +37,7 @@ resource "aws_ecs_service" "cluster1-service-alpha" {
 }
 
 resource "aws_ecs_service" "cluster1-service-beta" {
-  name            = "service-beta"
+  name            = "cluster1-service-beta"
   cluster         = aws_ecs_cluster.cluster1.id
   task_definition = aws_ecs_task_definition.cluster1-service-beta.arn
 
@@ -50,7 +50,7 @@ resource "aws_ecs_service" "cluster1-service-beta" {
 }
 
 resource "aws_ecs_service" "cluster1-service-gamma" {
-  name            = "service-gamma"
+  name            = "cluster1-service-gamma"
   cluster         = aws_ecs_cluster.cluster1.id
   task_definition = aws_ecs_task_definition.cluster1-service-gamma.arn
 
@@ -67,7 +67,7 @@ resource "aws_ecs_service" "cluster1-service-gamma" {
 # ================
 
 resource "aws_ecs_task_definition" "cluster1-service-alpha" {
-  family       = "service-alpha"
+  family       = "cluster1-service-alpha"
   network_mode = "awsvpc"
   cpu          = 256
   memory       = 512
@@ -75,15 +75,15 @@ resource "aws_ecs_task_definition" "cluster1-service-alpha" {
 
   container_definitions = jsonencode([
     {
-      name        = "nginx"
-      image       = "nginx:1.20.1-alpine"
+      name        = "demo-app1"
+      image       = "myspotontheweb/gitops-demo-app1:main"
       essential   = true
     }
   ])
 }
 
 resource "aws_ecs_task_definition" "cluster1-service-beta" {
-  family       = "service-beta"
+  family       = "cluster1-service-beta"
   network_mode = "awsvpc"
   cpu          = 256
   memory       = 512
@@ -91,15 +91,15 @@ resource "aws_ecs_task_definition" "cluster1-service-beta" {
 
   container_definitions = jsonencode([
     {
-      name        = "nginx"
-      image       = "nginx:1.20.1-alpine"
+      name        = "demo-app2"
+      image       = "myspotontheweb/gitops-demo-app2:main"
       essential   = true
     }
   ])
 }
 
 resource "aws_ecs_task_definition" "cluster1-service-gamma" {
-  family       = "service-gamma"
+  family       = "cluster1-service-gamma"
   network_mode = "awsvpc"
   cpu          = 256
   memory       = 512
@@ -107,8 +107,8 @@ resource "aws_ecs_task_definition" "cluster1-service-gamma" {
 
   container_definitions = jsonencode([
     {
-      name        = "nginx"
-      image       = "nginx:1.20.1-alpine"
+      name        = "demo-app3"
+      image       = "myspotontheweb/gitops-demo-app3:main"
       essential   = true
     }
   ])
