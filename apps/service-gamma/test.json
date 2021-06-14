@@ -4,7 +4,7 @@
   "containerDefinitions": [
     {
       "name": "demo-app3",
-      "image": "myspotontheweb/gitops-demo-app3:latest",
+      "image": "myspotontheweb/gitops-demo-app3:v1.2.0",
       "essential": true
     }
   ],
