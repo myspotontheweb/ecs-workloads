@@ -23,6 +23,6 @@ jobs:
         uses: aws-actions/amazon-ecs-deploy-task-definition@v1
         with:
           cluster: demo-cluster1
-          service: service-alpha
+          service: cluster1-service-alpha
           task-definition: apps/service-alpha/dev.json
           wait-for-service-stability: true

@@ -23,6 +23,6 @@ jobs:
         uses: aws-actions/amazon-ecs-deploy-task-definition@v1
         with:
           cluster: demo-cluster2
-          service: service-gamma
+          service: cluster2-service-gamma
           task-definition: apps/service-gamma/test.json
           wait-for-service-stability: true
