@@ -3,7 +3,7 @@ on:
     branches:
       - 'main'
     paths:
-      - apps/service-alpha/dev.yml
+      - apps/service-alpha/dev.json
 
 jobs:
   deploy:
@@ -21,7 +21,7 @@ jobs:
       - name: Deploy Amazon ECS task definition
         uses: aws-actions/amazon-ecs-deploy-task-definition@v1
         with:
-          task-definition: apps/service-alpha/dev.yml
+          task-definition: apps/service-alpha/dev.json
           cluster: demo-cluster1
           service: service-alpha
           wait-for-service-stability: true
