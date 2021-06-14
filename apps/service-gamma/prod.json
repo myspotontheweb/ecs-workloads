@@ -1,5 +1,5 @@
 {
-  "family": "service-gamma",
+  "family": "cluster3-service-gamma",
   "networkMode": "awsvpc",
   "containerDefinitions": [
     {

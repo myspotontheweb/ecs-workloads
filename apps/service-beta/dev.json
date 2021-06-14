@@ -1,5 +1,5 @@
 {
-  "family": "service-beta",
+  "family": "cluster1-service-beta",
   "networkMode": "awsvpc",
   "containerDefinitions": [
     {
