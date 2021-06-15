@@ -4,7 +4,7 @@
   "containerDefinitions": [
     {
       "name": "demo-app1",
-      "image": "myspotontheweb/ecs-demo-app1:v1.0.1",
+      "image": "myspotontheweb/ecs-demo-app1:v1.0.2",
       "essential": true
     }
   ],
