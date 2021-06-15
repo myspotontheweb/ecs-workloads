@@ -3,6 +3,8 @@
 ENV_FROM=${1:-test}
 ENV_TO=${2:-prod}
 
+git pull --rebase
+
 for i in $(find apps/*/*-$ENV_FROM.json | sort )
 do
    IMAGE=$(jq '.containerDefinitions[0].image' $i)
