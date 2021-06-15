@@ -1,0 +1,16 @@
+#!/bin/bash
+
+ENV_FROM=${1:-test}
+ENV_TO=${2:-prod}
+
+for i in $(find apps/*/*-$ENV_FROM.json | sort )
+do
+   IMAGE=$(jq '.containerDefinitions[0].image' $i)
+   SERVICE=$(basename $(dirname $i))
+
+   for j in $(find apps/$SERVICE/*-$ENV_TO.json | sort )
+   do
+      echo "Updating: $j from $i"
+      jq ".containerDefinitions[0].image=$IMAGE" $j | sponge $j
+   done
+done
