@@ -1,0 +1,11 @@
+#!/bin/bash
+
+SERVICE=$1
+IMAGE=$2
+ENV=${3:-dev}
+
+for i in $(find apps/$SERVICE/*-$ENV.json)
+do
+  echo "Updating: $i"
+  jq ".containerDefinitions[0].image=\"$IMAGE\"" $i | sponge $i
+done
